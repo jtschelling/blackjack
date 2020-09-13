@@ -6,7 +6,7 @@ package hand
 
 import (
   "fmt"
-  "github.com/jtschelling/deck/students/jtschelling/pkg/deck"
+  "github.com/jtschelling/blackjack/students/jtschelling/deck"
 )
 
 /////////////
