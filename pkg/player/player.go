@@ -2,8 +2,8 @@
 package player
 
 import (
-  "github.com/jtschelling/blackjack/deck"
-  "github.com/jtschelling/blackjack/hand"
+  "github.com/jtschelling/blackjack/pkg/deck"
+  "github.com/jtschelling/blackjack/pkg/hand"
 )
 
 type Player struct {
