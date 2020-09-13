@@ -2,7 +2,7 @@ package hand
 
 import (
   "testing"
-  "github.com/jtschelling/blackjack/students/jtschelling/deck"
+  "github.com/jtschelling/blackjack/deck"
 )
 
 // Tests deck.Draw() on a standard deck. Card should be added to hand and removed from deck.
