@@ -11,12 +11,14 @@ type Game struct {
   Deck deck.Deck
   Players []player.Player
   PlayerPTR int
+  Round int
 }
 
 var blackjackStartingHandSize = 2
 
 func (g Game) Play() {
-  fmt.Println(g)
+  g = newRound(g)
+  findWinner(g.Players)
 }
 
 func New(numPlayers int) Game {
@@ -31,6 +33,7 @@ func New(numPlayers int) Game {
     Deck: deck.Shuffle(deck.New([]string{}, 0), "random"),
     Players: players,
     PlayerPTR: 0,
+    Round: 1,
   }
 }
 
@@ -48,4 +51,35 @@ func Deal(g Game) Game {
 
 func chooseDealer(p []player.Player) []player.Player {
   return player.SetDealer(len(p) - 1, p)
+}
+
+func findWinner(ps []player.Player) player.Player {
+  var highScore int
+  var pos int
+  for ndx, p := range ps {
+    fmt.Println(p)
+    hand.Show(p.Hand)
+    if hand.Points(p.Hand) > highScore {
+      highScore = hand.Points(p.Hand)
+      pos = ndx
+    }
+  }
+
+  return ps[pos]
+}
+
+func newRound(g Game) Game {
+  var d deck.Deck
+  var h hand.Hand
+  for _, p := range g.Players {
+    d, h = DiscardHand(d, p.Hand)
+  }
+
+
+  return Game {
+    Deck: g.Deck,
+    Players: g.Players,
+    PlayerPTR: 0,
+    Round: (g.Round + 1),
+  }
 }

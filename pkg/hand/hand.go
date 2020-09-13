@@ -50,6 +50,24 @@ func Discard(d deck.Deck, h Hand, c deck.Card) (deck.Deck, Hand) {
   return deck.AddToDiscard(d, c), h
 }
 
+// Places all cards in hand to the deck's discard pile.
+func DiscardHand(d deck.Deck, h Hand) (deck.Deck) {
+  for _, c := range h.Cards {
+    d, h = Discard(d, h, c)
+  }
+
+  return d
+}
+
+func Points(h Hand) int {
+  var totalPts int
+  for _, c := range h.Cards {
+    totalPts += c.Value
+  }
+
+  return totalPts
+}
+
 // Outputs cards in hand to stdout
 func Show(h Hand) {
   for _, card := range h.Cards {

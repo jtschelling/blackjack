@@ -10,6 +10,7 @@ type Player struct {
   Hand hand.Hand
   Dealer bool
   Position int
+  Busted bool
 }
 
 func New(position int, dealer bool) Player {
@@ -19,6 +20,7 @@ func New(position int, dealer bool) Player {
     },
     Dealer: dealer,
     Position: position,
+    Busted: false,
   }
 }
 
