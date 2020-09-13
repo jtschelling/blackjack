@@ -12,16 +12,25 @@ type Player struct {
   Position int
 }
 
-func New() Player {
+func New(position int, dealer bool) Player {
   return Player {
     Hand: hand.Hand {
-      Cards: []deck.Card {
-        deck.Card {
-          Value: 0,
-          Suit: "Heart",
-        },
-      },
+      Cards: make([]deck.Card, 0),
     },
-    Dealer: false,
+    Dealer: dealer,
+    Position: position,
   }
+}
+
+func SetDealer(pos int, ps []Player) []Player {
+  var ndx int
+  for i, p := range ps {
+    if p.Position == pos {
+      ndx = i
+      break
+    }
+  }
+
+  ps[ndx].Dealer = true
+  return ps
 }
